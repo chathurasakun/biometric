@@ -11,6 +11,7 @@ import { Scene, Router } from 'react-native-router-flux';
 import Login from './app/Login';
 import Dashboard from './app/Dashboard';
 import Init from './app/Init';
+import Biometric from './app/Biometric';
 
 class App extends Component {
 
@@ -27,6 +28,11 @@ class App extends Component {
           <Scene
             key='login'
             component={Login}
+            type='replace'
+          />
+          <Scene
+            key='biometric'
+            component={Biometric}
             type='replace'
           />
           <Scene

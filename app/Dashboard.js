@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, ScrollView, AsyncStorage, FlatList, View, Text } from 'react-native';
+import { ActivityIndicator, AsyncStorage, FlatList, View, Text, TouchableHighlight } from 'react-native';
 import { Header, Container } from 'native-base';
 import baseUrl from './BaseUrl';
+import styles from '../styles/Style';
+import { Actions } from 'react-native-router-flux';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 class Dashboard extends Component {
 
@@ -15,6 +18,17 @@ class Dashboard extends Component {
 
     componentDidMount = () => {
         this.getGridData();
+    }
+
+    async logout() {
+        try {
+            await AsyncStorage.removeItem('key');
+            Actions.login();
+            return true;
+        }
+        catch (exception) {
+            return false;
+        }
     }
 
     getGridData = () => {
@@ -71,7 +85,7 @@ class Dashboard extends Component {
     render = () => {
         return (
             <Container>
-                <Header style={{backgroundColor:'blue'}}>
+                <Header style={{ backgroundColor: 'blue' }}>
 
                 </Header>
 
@@ -80,6 +94,12 @@ class Dashboard extends Component {
                     keyExtractor={(item, index) => item.id}
                     renderItem={({ item }) => this.renderListItem(item)}
                 />
+
+                <View style={{ marginTop: hp('5%'), justifyContent: 'center', alignItems: 'center' }}>
+                    <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={() => this.logout()}>
+                        <Text style={styles.loginText}>Logout</Text>
+                    </TouchableHighlight>
+                </View>
 
                 {(this.state.isFetching) ?
                     <ActivityIndicator

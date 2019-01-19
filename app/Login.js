@@ -91,7 +91,7 @@ class Login extends Component {
                                 username: '',
                                 password: '',
                                 isFetching: false
-                            }, () => Actions.dashboard());
+                            }, () => Actions.biometric());
                         }
                         else if (responseJson.status === 403) {
                             this.setState({ isFetching: false }, () => {

@@ -14,7 +14,8 @@ const images = {
     VolunteerActivity: require('../images/VolunteerActivity.png'),
     Profile: require('../images/Profile.png'),
     settings: require('../images/ic_settings.png'),
-    logout: require('../images/Logout.png')
+    logout: require('../images/Logout.png'),
+    fingerPrint: require('../images/fp.png')
 };
 
 export default images
